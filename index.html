@@ -2,18 +2,16 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculadora ICMS de Frete</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Calculadora DARE de Frete – Mato Grosso</title>
   <style>
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f4f6f8;
       color: #1f2937;
     }
-
     .container {
       max-width: 1100px;
       margin: 30px auto;
@@ -22,16 +20,13 @@
       grid-template-columns: 2fr 1fr;
       gap: 20px;
     }
-
     .card {
       background: #fff;
       border-radius: 18px;
       padding: 22px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     }
-
     h1, h2, h3, p { margin-top: 0; }
-
     .alert {
       background: #eef6ff;
       border: 1px solid #cfe4ff;
@@ -39,26 +34,21 @@
       border-radius: 12px;
       margin-bottom: 18px;
       font-size: 14px;
-      line-height: 1.5;
     }
-
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
-
     .field {
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
-
     label {
       font-size: 14px;
       font-weight: 700;
     }
-
     input, select {
       width: 100%;
       padding: 12px;
@@ -66,23 +56,16 @@
       border-radius: 10px;
       font-size: 15px;
     }
-
     input:focus, select:focus {
       outline: none;
       border-color: #2563eb;
     }
-
-    input[readonly] {
-      background: #f9fafb;
-    }
-
     .buttons {
       margin-top: 18px;
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
-
     button {
       border: none;
       border-radius: 12px;
@@ -91,18 +74,15 @@
       font-size: 15px;
       font-weight: 700;
     }
-
     .primary {
       background: #111827;
       color: #fff;
     }
-
     .secondary {
       background: #fff;
       color: #111827;
       border: 1px solid #d1d5db;
     }
-
     .error {
       margin-top: 14px;
       background: #fef2f2;
@@ -111,7 +91,6 @@
       padding: 12px;
       border-radius: 12px;
     }
-
     .success {
       margin-top: 14px;
       background: #ecfdf5;
@@ -120,7 +99,6 @@
       padding: 12px;
       border-radius: 12px;
     }
-
     .result-row {
       display: flex;
       justify-content: space-between;
@@ -129,7 +107,6 @@
       border-bottom: 1px solid #e5e7eb;
       font-size: 15px;
     }
-
     .memory {
       background: #f3f4f6;
       padding: 14px;
@@ -137,7 +114,6 @@
       margin-top: 16px;
       font-size: 14px;
     }
-
     .total {
       background: #111827;
       color: #fff;
@@ -145,30 +121,19 @@
       border-radius: 14px;
       margin-top: 16px;
     }
-
     .total small {
       color: #cbd5e1;
       display: block;
       margin-bottom: 6px;
       text-transform: uppercase;
     }
-
     .total strong {
       font-size: 32px;
     }
-
-    .small-note {
-      font-size: 12px;
-      color: #6b7280;
-      margin-top: 4px;
-      line-height: 1.4;
-    }
-
     @media (max-width: 900px) {
       .container {
         grid-template-columns: 1fr;
       }
-
       .grid {
         grid-template-columns: 1fr;
       }
@@ -178,19 +143,14 @@
 <body>
   <div class="container">
     <div class="card">
-      <h1>Calculadora de ICMS de Frete</h1>
+      <h1>Calculadora DARE de Frete – Mato Grosso</h1>
+
+      <div class="alert">
+        Utilizamos a seguinte alíquota
+        <strong>CNPJ = 12%</strong> e <strong>CPF = 17,5%</strong>.
+      </div>
 
       <div class="grid">
-        <div class="field">
-          <label for="origem">Origem</label>
-          <input id="origem" type="text" value="Porto Velho - RO" placeholder="Ex.: Porto Velho - RO" />
-        </div>
-
-        <div class="field">
-          <label for="destino">Destino</label>
-          <input id="destino" type="text" value="Cuiaba - MT" placeholder="Ex.: Cuiaba - MT" />
-        </div>
-
         <div class="field">
           <label for="tipoPessoa">Tipo de cliente</label>
           <select id="tipoPessoa">
@@ -200,25 +160,51 @@
         </div>
 
         <div class="field">
-          <label for="peso">Peso (toneladas)</label>
-          <input id="peso" type="number" step="0.01" value="1" placeholder="Ex.: 1" />
+          <label for="carga">Tipo de carga</label>
+          <select id="carga">
+            <option value="0">Seca não fracionada</option>
+            <option value="1">Frigorífica</option>
+            <option value="2">Grãos a granel</option>
+            <option value="3">Farelo a granel</option>
+            <option value="4">Óleo vegetal</option>
+            <option value="5">Algodão pluma</option>
+          </select>
         </div>
 
         <div class="field">
-          <label for="diesel">Valor do diesel</label>
-          <input id="diesel" type="number" step="0.01" value="6.50" placeholder="Ex.: 6.50" />
+          <label for="peso">Peso (toneladas)</label>
+          <input id="peso" type="number" step="0.01" value="1" />
+        </div>
+
+        <div class="field">
+          <label for="km">Distância (km)</label>
+          <input id="km" type="number" step="1" value="201" />
         </div>
 
         <div class="field">
           <label for="aliquota">Alíquota automática</label>
           <input id="aliquota" type="text" value="12%" readonly />
         </div>
+      </div>
+
+      <div class="alert" style="margin-top:14px;">
+        Não sabe a quilometragem? Digite as cidades abaixo e clique em "Ver rota no mapa" pra descobrir a distância no Google Maps, depois é só digitar o valor no campo "Distância (km)" acima.
+      </div>
+
+      <div class="grid">
+        <div class="field">
+          <label for="cidadeOrigem">Cidade de origem</label>
+          <input id="cidadeOrigem" type="text" placeholder="Ex: Vilhena, RO" />
+        </div>
 
         <div class="field">
-          <label for="km">Distância (km)</label>
-          <input id="km" type="number" step="1" readonly />
-          <div class="small-note">Preenchido automaticamente pelo Google.</div>
+          <label for="cidadeDestino">Cidade de destino</label>
+          <input id="cidadeDestino" type="text" placeholder="Ex: Cuiabá, MT" />
         </div>
+      </div>
+
+      <div class="buttons">
+        <button class="secondary" onclick="verRotaNoMapa()">Ver rota no mapa</button>
       </div>
 
       <div class="buttons">
@@ -232,129 +218,60 @@
     <div class="card">
       <h2>Resultado</h2>
 
-      <div class="result-row">
-        <span>Distância</span>
-        <strong id="rDistancia">-</strong>
-      </div>
-
-      <div class="result-row">
-        <span>Faixa</span>
-        <strong id="rFaixa">-</strong>
-      </div>
-
-      <div class="result-row">
-        <span>Tipo de cliente</span>
-        <strong id="rTipo">-</strong>
-      </div>
-
-      <div class="result-row">
-        <span>Alíquota</span>
-        <strong id="rAliquota">-</strong>
-      </div>
-
-      <div class="result-row">
-        <span>Valor da faixa</span>
-        <strong id="rValorFaixa">-</strong>
-      </div>
-
-      <div class="result-row">
-        <span>Base de cálculo</span>
-        <strong id="rBase">-</strong>
-      </div>
+      <div class="result-row"><span>Distância</span><strong id="rDistancia">-</strong></div>
+      <div class="result-row"><span>Faixa</span><strong id="rFaixa">-</strong></div>
+      <div class="result-row"><span>Tipo de carga</span><strong id="rCarga">-</strong></div>
+      <div class="result-row"><span>Tipo de cliente</span><strong id="rTipo">-</strong></div>
+      <div class="result-row"><span>Alíquota</span><strong id="rAliquota">-</strong></div>
+      <div class="result-row"><span>Valor na tabela (R$/ton.)</span><strong id="rValorFaixa">-</strong></div>
+      <div class="result-row"><span>Tabela × toneladas</span><strong id="rBase">-</strong></div>
 
       <div class="memory">
-        <div><strong>Memória do cálculo</strong></div>
-        <div style="margin-top:8px;"></div>
+        <div><strong>Memória de cálculo</strong></div>
         <div id="rMemoria" style="margin-top:8px;">-</div>
       </div>
 
       <div class="total">
-        <small>Imposto final</small>
+        <small>Valor final</small>
         <strong id="rImposto">R$ 0,00</strong>
       </div>
     </div>
   </div>
 
   <script>
-       const GOOGLE_API_KEY = "AIzaSyCFucCNqzUIYzgyffHJfTAs9-5a1gnu6Fc";
-
-    const DISTANCE_BRACKETS = [
-      { min: 1, max: 50, fixedValue: 16.25 },
-      { min: 51, max: 100, fixedValue: 17.88 },
-      { min: 101, max: 150, fixedValue: 20.26 },
-      { min: 151, max: 200, fixedValue: 22.13 },
-      { min: 201, max: 250, fixedValue: 23.77 },
-      { min: 251, max: 300, fixedValue: 26.05 },
-      { min: 301, max: 350, fixedValue: 28.39 },
-      { min: 351, max: 400, fixedValue: 30.22 },
-      { min: 401, max: 450, fixedValue: 31.59 },
-      { min: 451, max: 500, fixedValue: 32.56 },
-      { min: 501, max: 550, fixedValue: 33.19 },
-      { min: 551, max: 600, fixedValue: 33.53 },
-      { min: 601, max: 650, fixedValue: 33.61 },
-      { min: 651, max: 700, fixedValue: 36.30 },
-      { min: 701, max: 750, fixedValue: 38.84 },
-      { min: 751, max: 800, fixedValue: 41.57 },
-      { min: 801, max: 850, fixedValue: 44.47 },
-      { min: 851, max: 900, fixedValue: 47.59 },
-      { min: 901, max: 950, fixedValue: 50.92 },
-      { min: 951, max: 1000, fixedValue: 53.98 },
-      { min: 1001, max: 1100, fixedValue: 57.22 },
-      { min: 1101, max: 1200, fixedValue: 60.65 },
-      { min: 1201, max: 1300, fixedValue: 64.29 },
-      { min: 1301, max: 1400, fixedValue: 68.15 },
-      { min: 1401, max: 1500, fixedValue: 72.24 },
-      { min: 1501, max: 1600, fixedValue: 75.85 },
-      { min: 1601, max: 1700, fixedValue: 79.64 },
-      { min: 1701, max: 1800, fixedValue: 83.63 },
-      { min: 1801, max: 1900, fixedValue: 87.81 },
-      { min: 1901, max: 2000, fixedValue: 92.20 },
-      { min: 2001, max: 2100, fixedValue: 95.85 },
-      { min: 2101, max: 2200, fixedValue: 98.45 },
-      { min: 2201, max: 2300, fixedValue: 100.86 },
-      { min: 2301, max: 2400, fixedValue: 103.55 },
-      { min: 2401, max: 2500, fixedValue: 106.09 },
-      { min: 2501, max: 2600, fixedValue: 109.37 },
-      { min: 2601, max: 2700, fixedValue: 117.48 },
-      { min: 2701, max: 2800, fixedValue: 126.44 },
-      { min: 2801, max: 2900, fixedValue: 135.73 },
-      { min: 2901, max: 3000, fixedValue: 139.25 },
-      { min: 3001, max: 3100, fixedValue: 142.68 },
-      { min: 3101, max: 3200, fixedValue: 146.35 },
-      { min: 3201, max: 3300, fixedValue: 149.96 },
-      { min: 3301, max: 3400, fixedValue: 153.80 },
-      { min: 3401, max: 3500, fixedValue: 157.60 },
-      { min: 3501, max: 3600, fixedValue: 161.62 },
-      { min: 3601, max: 3700, fixedValue: 165.61 },
-      { min: 3701, max: 3800, fixedValue: 169.82 },
-      { min: 3801, max: 3900, fixedValue: 174.01 },
-      { min: 3901, max: 4000, fixedValue: 178.42 },
-      { min: 4001, max: 4100, fixedValue: 182.83 },
-      { min: 4101, max: 4200, fixedValue: 187.45 },
-      { min: 4201, max: 4300, fixedValue: 192.08 },
-      { min: 4301, max: 4400, fixedValue: 195.99 },
-      { min: 4401, max: 4500, fixedValue: 199.87 },
-      { min: 4501, max: 4600, fixedValue: 203.93 },
-      { min: 4601, max: 4700, fixedValue: 207.97 },
-      { min: 4701, max: 4800, fixedValue: 213.20 },
-      { min: 4801, max: 4900, fixedValue: 218.46 },
-      { min: 4901, max: 5000, fixedValue: 222.88 },
-      { min: 5001, max: 5200, fixedValue: 229.54 },
-      { min: 5201, max: 5400, fixedValue: 238.73 },
-      { min: 5401, max: 5600, fixedValue: 248.28 },
-      { min: 5601, max: 5800, fixedValue: 258.21 },
-      { min: 5801, max: 6000, fixedValue: 268.54 }
-    ];
+    // Tabela de frete do Mato Grosso. v = [Seca, Frigorífica, Grãos, Farelo, Óleo vegetal, Algodão pluma] (R$/ton.)
+    const DISTANCE_BRACKETS = [{"min":1,"max":50,"v":[31.65,45.07,28.26,31.09,33.35,40.97]},{"min":51,"max":100,"v":[38.1,54.27,34.02,37.43,40.15,49.33]},{"min":101,"max":150,"v":[40.91,58.27,36.53,40.19,43.11,52.96]},{"min":151,"max":200,"v":[44.14,62.86,39.41,43.36,46.51,57.14]},{"min":201,"max":250,"v":[48.68,69.34,43.47,47.82,51.29,63.02]},{"min":251,"max":300,"v":[63.29,90.15,56.51,62.18,66.69,81.94]},{"min":301,"max":350,"v":[65.7,93.58,58.67,64.55,69.23,85.06]},{"min":351,"max":400,"v":[70.55,100.49,62.99,69.31,74.34,91.34]},{"min":401,"max":450,"v":[86.38,123.03,77.13,84.86,91.02,111.83]},{"min":451,"max":500,"v":[95.85,136.52,85.59,94.17,101.0,124.09]},{"min":501,"max":550,"v":[100.83,143.62,90.03,99.06,106.25,130.54]},{"min":551,"max":600,"v":[105.0,149.56,93.76,103.16,110.64,135.94]},{"min":601,"max":650,"v":[107.94,153.73,96.38,106.04,113.73,139.74]},{"min":651,"max":700,"v":[113.82,162.12,101.63,111.82,119.94,147.36]},{"min":701,"max":750,"v":[117.33,167.11,104.76,115.26,123.63,151.89]},{"min":751,"max":800,"v":[124.11,176.77,110.82,121.92,130.77,160.67]},{"min":801,"max":850,"v":[127.25,181.24,113.62,125.01,134.08,164.74]},{"min":851,"max":900,"v":[131.95,187.94,117.82,129.63,139.04,170.82]},{"min":901,"max":950,"v":[141.0,200.82,125.9,138.52,148.57,182.54]},{"min":951,"max":1000,"v":[149.89,213.49,133.84,147.25,157.94,194.05]},{"min":1001,"max":1100,"v":[168.98,240.65,150.88,165.97,178.03,218.77]},{"min":1101,"max":1200,"v":[175.65,250.16,156.84,172.52,185.06,227.41]},{"min":1201,"max":1300,"v":[194.58,277.11,173.74,191.1,205.0,251.91]},{"min":1301,"max":1400,"v":[204.68,291.49,182.75,201.02,215.64,264.99]},{"min":1401,"max":1500,"v":[212.09,302.05,189.38,208.31,223.45,274.59]},{"min":1501,"max":1600,"v":[223.66,318.52,199.7,219.67,235.64,289.56]},{"min":1601,"max":1700,"v":[240.9,343.07,215.1,236.6,253.8,311.88]},{"min":1701,"max":1800,"v":[259.38,369.4,231.6,254.75,273.28,335.81]},{"min":1801,"max":1900,"v":[280.4,399.34,250.37,275.4,295.43,363.03]},{"min":1901,"max":2000,"v":[303.71,432.53,271.18,298.29,319.98,393.2]},{"min":2001,"max":2200,"v":[318.56,453.69,284.44,312.88,335.63,412.43]},{"min":2201,"max":2400,"v":[331.08,471.51,295.62,325.17,348.82,428.64]},{"min":2401,"max":2600,"v":[335.85,478.31,299.88,329.86,353.84,434.82]},{"min":2601,"max":2800,"v":[344.9,491.19,307.96,338.75,363.38,446.53]},{"min":2801,"max":3000,"v":[359.52,512.01,321.01,353.1,378.78,465.45]},{"min":3001,"max":3200,"v":[377.39,537.46,336.97,370.66,397.61,488.59]},{"min":3201,"max":3400,"v":[391.9,558.13,349.93,384.91,412.9,507.39]},{"min":3401,"max":3600,"v":[406.4,578.78,362.87,399.15,428.17,526.15]},{"min":3601,"max":3800,"v":[419.59,597.56,374.65,412.1,442.07,543.23]},{"min":3801,"max":4000,"v":[435.54,620.28,388.89,427.77,458.87,563.88]},{"min":4001,"max":4200,"v":[477.63,680.22,426.48,469.11,503.22,618.37]},{"min":4201,"max":4400,"v":[532.81,758.81,475.75,523.31,561.36,689.82]},{"min":4401,"max":4600,"v":[550.22,783.6,491.29,540.4,579.7,712.35]},{"min":4601,"max":4800,"v":[566.21,806.38,505.57,556.11,596.55,733.06]},{"min":4801,"max":5000,"v":[582.15,829.08,519.8,571.77,613.34,753.69]},{"min":5001,"max":5200,"v":[601.02,855.96,536.66,590.3,633.23,778.13]},{"min":5201,"max":5400,"v":[617.03,878.74,550.94,606.02,650.08,798.84]},{"min":5401,"max":5600,"v":[632.99,901.48,565.19,621.69,666.9,819.51]},{"min":5601,"max":5800,"v":[650.4,926.28,580.75,638.8,685.25,842.06]},{"min":5801,"max":6000,"v":[666.39,949.04,595.02,654.5,702.09,862.75]}];
+    const CARGAS = ["Seca não fracionada","Frigorífica","Grãos a granel","Farelo a granel","Óleo vegetal","Algodão pluma"];
 
     function money(value) {
-      return Number(value || 0).toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
+      return Number(value || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
     }
 
     function getBracket(distanceKm) {
       return DISTANCE_BRACKETS.find(item => distanceKm >= item.min && distanceKm <= item.max);
+    }
+
+    function aviso(texto, tipo) {
+      document.getElementById("mensagem").innerHTML = '<div class="' + tipo + '">' + texto + '</div>';
+    }
+
+    let ultimoCalculo = null;
+
+    function verRotaNoMapa() {
+      const origem = document.getElementById("cidadeOrigem").value.trim();
+      const destino = document.getElementById("cidadeDestino").value.trim();
+
+      if (!origem || !destino) {
+        aviso("Preencha a cidade de origem e a cidade de destino.", "error");
+        return;
+      }
+
+      const url = "https://www.google.com/maps/dir/" +
+        encodeURIComponent(origem) + "/" + encodeURIComponent(destino);
+      const w = window.open(url, "_blank");
+      if (!w) {
+        aviso('Não foi possível abrir o mapa automaticamente. <a href="' + url + '" target="_blank" rel="noopener">Clique aqui para ver a rota</a>.', "success");
+      }
     }
 
     function atualizarAliquota() {
@@ -362,114 +279,70 @@
       document.getElementById("aliquota").value = tipo === "cpf" ? "17,5%" : "12%";
     }
 
-    function mostrarMensagem(texto, tipo) {
-      const box = document.getElementById("mensagem");
-      box.className = tipo === "erro" ? "error" : "success";
-      box.innerHTML = texto;
-    }
-
-    async function buscarDistanciaGoogle(origem, destino) {
-      const resposta = await fetch("https://routes.googleapis.com/directions/v2:computeRoutes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Goog-Api-Key": const GOOGLE_API_KEY = "AIzaSyCFucCNqzUIYzgyffHJfTAs9-5a1gnu6Fc";
-          "X-Goog-FieldMask": "routes.distanceMeters,routes.duration"
-        },
-        body: JSON.stringify({
-          origin: { address: origem },
-          destination: { address: destino },
-          travelMode: "DRIVE",
-          routingPreference: "TRAFFIC_UNAWARE",
-          languageCode: "pt-BR",
-          units: "METRIC"
-        })
-      });
-
-      if (!resposta.ok) {
-        const erro = await resposta.text();
-        throw new Error(erro || "Erro ao consultar Google Maps");
-      }
-
-      const dados = await resposta.json();
-      const metros = dados?.routes?.[0]?.distanceMeters;
-
-      if (!metros) {
-        throw new Error("Não foi possível encontrar rota");
-      }
-
-      return Math.round(metros / 1000);
-    }
-
-    async function calcular() {
-      const origem = document.getElementById("origem").value.trim();
-      const destino = document.getElementById("destino").value.trim();
+    function calcular() {
+      const km = Math.ceil(parseFloat(document.getElementById("km").value));
       const peso = parseFloat(document.getElementById("peso").value);
-      const diesel = parseFloat(document.getElementById("diesel").value);
+      const carga = parseInt(document.getElementById("carga").value, 10);
       const tipo = document.getElementById("tipoPessoa").value;
       const aliquota = tipo === "cpf" ? 0.175 : 0.12;
 
-      if (!origem || !destino || !peso || !diesel) {
-        mostrarMensagem("Preencha origem, destino, peso e diesel.", "erro");
+      if (!km || !peso) {
+        aviso("Preencha km e peso.", "error");
         return;
       }
 
-      if (const GOOGLE_API_KEY) = "AIzaSyCFucCNqzUIYzgyffHJfTAs9-5a1gnu6Fc"; {
-        mostrarMensagem("A chave da API do Google ainda não foi colocada no código.", "erro");
+      const bracket = getBracket(km);
+      if (!bracket) {
+        aviso("KM fora da tabela (de 1 a 6.000 km).", "error");
         return;
       }
 
-      try {
-        mostrarMensagem("Consultando distância no Google...", "sucesso");
+      document.getElementById("mensagem").innerHTML = "";
+      const valor = bracket.v[carga];
+      const base = valor * peso;
+      const total = base * aliquota;
 
-        const km = await buscarDistanciaGoogle(origem, destino);
-        document.getElementById("km").value = km;
+      document.getElementById("rDistancia").textContent = km + " km";
+      document.getElementById("rFaixa").textContent = bracket.min + " a " + bracket.max + " km";
+      document.getElementById("rCarga").textContent = CARGAS[carga];
+      document.getElementById("rTipo").textContent = tipo === "cpf" ? "CPF" : "CNPJ";
+      document.getElementById("rAliquota").textContent = tipo === "cpf" ? "17,5%" : "12%";
+      document.getElementById("rValorFaixa").textContent = money(valor);
+      document.getElementById("rBase").textContent = money(base);
+      document.getElementById("rMemoria").textContent =
+        valor + " × " + peso + " × " + (aliquota * 100).toFixed(1) + "%";
+      document.getElementById("rImposto").textContent = money(total);
 
-        const bracket = getBracket(km);
-
-        if (!bracket) {
-          mostrarMensagem("KM fora da tabela.", "erro");
-          return;
-        }
-
-        const base = bracket.fixedValue * peso * diesel;
-        const imposto = base * aliquota;
-
-        document.getElementById("rDistancia").textContent = km + " km";
-        document.getElementById("rFaixa").textContent = bracket.min + " a " + bracket.max + " km";
-        document.getElementById("rTipo").textContent = tipo === "cpf" ? "CPF" : "CNPJ";
-        document.getElementById("rAliquota").textContent = tipo === "cpf" ? "17,5%" : "12%";
-        document.getElementById("rValorFaixa").textContent = money(bracket.fixedValue);
-        document.getElementById("rBase").textContent = money(base);
-        document.getElementById("rMemoria").textContent =
-          bracket.fixedValue + " × " + peso + " × " + diesel + " × " + (aliquota * 100).toFixed(1) + "%";
-        document.getElementById("rImposto").textContent = money(imposto);
-
-        mostrarMensagem("Cálculo realizado com sucesso.", "sucesso");
-      } catch (e) {
-        mostrarMensagem("Erro ao buscar distância: " + e.message, "erro");
-      }
+      ultimoCalculo = { valor, peso, base, aliquota, total };
     }
 
-    async function copiarResumo() {
-      const texto = [
-        "Calculadora ICMS / GNRE de Frete",
-        "Tabela usada: carga refrigerada",
-        "Distância: " + document.getElementById("rDistancia").textContent,
-        "Faixa: " + document.getElementById("rFaixa").textContent,
-        "Tipo: " + document.getElementById("rTipo").textContent,
-        "Alíquota: " + document.getElementById("rAliquota").textContent,
-        "Valor da faixa: " + document.getElementById("rValorFaixa").textContent,
-        "Base: " + document.getElementById("rBase").textContent,
-        "Imposto: " + document.getElementById("rImposto").textContent
-      ].join("\n");
+    function copiarResumo() {
+      if (!ultimoCalculo) {
+        aviso("Calcule primeiro antes de copiar o resumo.", "error");
+        return;
+      }
 
-      await navigator.clipboard.writeText(texto);
-      mostrarMensagem("Resumo copiado.", "sucesso");
+      const { valor, peso, aliquota, total } = ultimoCalculo;
+      const formatarMoeda = (n) => n.toFixed(2).replace(".", ",");
+      const formatarPeso = (n) => n.toString().replace(".", ",");
+      const percentual = (aliquota * 100).toFixed(1).replace(".0", "").replace(".", ",");
+
+      const resumo =
+        formatarMoeda(valor) + " x " +
+        formatarPeso(peso) + " x " +
+        percentual + "% = " +
+        money(total);
+
+      navigator.clipboard.writeText(resumo).then(() => {
+        aviso("Resumo copiado: " + resumo, "success");
+      }).catch(() => {
+        aviso("Não foi possível copiar automaticamente. Resumo: " + resumo, "error");
+      });
     }
 
     document.getElementById("tipoPessoa").addEventListener("change", atualizarAliquota);
     atualizarAliquota();
+    calcular();
   </script>
 </body>
 </html>
